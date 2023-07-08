@@ -1,35 +1,13 @@
-# v2
+# Personal Website V2 🔥
 
-This template should help get you started developing with Vue 3 in Vite.
+Hey there! Thanks for dropping by to check out my latest portfolio website repository. This website isn't just your typical portfolio—it's a personal project that I'm super excited about. Over the past year, I've been honing my skills as a developer and designer, and this website is a way for me to show off what I've learned and accomplished. So, take a look around and see what I've been up to!
 
-## Recommended IDE Setup
+## What I used
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [VS Code](https://code.visualstudio.com/) my coding soulmate
+- [Github](https://github.com/) for easy collaborative coding
+- [Vue.js](https://vuejs.org/) JavaScript framework for building user interfaces
+- [Talwind](https://tailwindcss.com/) utility-first CSS framework for less time-consuming
+- [Google Fonts](https://fonts.google.com/) open source for font and icons
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
+Let me know what you think!
