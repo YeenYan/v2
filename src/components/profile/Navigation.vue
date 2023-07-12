@@ -5,7 +5,7 @@
         <li
           v-for="navList in navLists"
           :key="navList.text"
-          :class="{ active: navList.active }"
+          :class="{ active: navList.active && activeContent }"
           @click.capture="toggleActiveNav(navList, navList.content)"
         >
           <a :href="navActive">
@@ -20,6 +20,9 @@
 </template>
 
 <script>
+import { mapWritableState } from "pinia";
+import useIndexStore from "@/store/index";
+
 export default {
   name: "Navigation",
   data() {
@@ -53,7 +56,9 @@ export default {
       ],
     };
   },
-  computed: {},
+  computed: {
+    ...mapWritableState(useIndexStore, ["activeContent"]),
+  },
   methods: {
     // this will toggle only one item on the list
     toggleActiveNav(clickedNav, content) {
@@ -61,6 +66,7 @@ export default {
         navList.active = navList === clickedNav;
       });
 
+      this.activeContent = true;
       this.navActive = content;
     },
 
@@ -120,7 +126,7 @@ export default {
   @apply absolute top-[-2.5rem] w-[5.3rem] h-[5.3rem] bg-shades-white rounded-full;
   box-shadow: 0px -7px 7px 0px rgba(0, 0, 0, 0.05);
   opacity: 0;
-  transition: 0.3s;
+  transition: 0.3s ease-in;
   transform: translateY(2rem);
 }
 
@@ -141,18 +147,27 @@ export default {
   opacity: 1;
 }
 
+/* About Indicator */
+
 .navigation ul li:nth-child(1).active ~ .indicator {
   transform: translateX(calc(25% * 0));
 }
+/* ============================================== */
+
+/* Experience Indicator */
 
 .navigation ul li:nth-child(2).active ~ .indicator {
   transform: translateX(calc(25% * 4));
 }
+/* ============================================== */
 
+/* Projects Indicator */
 .navigation ul li:nth-child(3).active ~ .indicator {
   transform: translateX(calc(25% * 8));
 }
+/* ============================================== */
 
+/* Contact Indicator */
 .navigation ul li:nth-child(4).active ~ .indicator {
   transform: translateX(calc(25% * 12));
 }
@@ -163,7 +178,7 @@ export default {
 
 @media (max-width: 400px) {
   .mobileNav {
-    @apply bottom-[-2px] left-0 w-full mx-auto;
+    @apply bottom-[-5px] left-0 w-full mx-auto;
   }
 
   .navigation {

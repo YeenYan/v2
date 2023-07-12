@@ -1,13 +1,11 @@
 <template>
   <header>
-    <!-- <div class="image__container">
-      <img src="@/components/icons/myLogo_black.svg" alt="My Logo" />
-    </div> -->
-
     <div class="navigation__container">
-      <div class="image__container" @click.prevent="logoToggle">
-        <img src="@/components/icons/myLogo_black.svg" alt="My Logo" />
-      </div>
+      <a href="#intro">
+        <div class="image__container" @click.capture="logoToggle">
+          <img src="@/components/icons/myLogo_black.svg" alt="My Logo" />
+        </div>
+      </a>
       <!-- navigation -->
       <nav class="navigation__wrapper" v-if="!mobile">
         <div class="line">
@@ -18,20 +16,24 @@
             class="nav-list"
             v-for="navList in navLists"
             :key="navList.title"
-            @click.prevent="toggleActiveNav(navList, navList.progressBar)"
+            @click.capture="
+              toggleActiveNav(navList, navList.progressBar, navList.content)
+            "
             :class="{ active: navList.active }"
           >
             <div class="icon__wrapper">
               <div class="point" :class="{ active: navList.pointActive }"></div>
               <span class="material-symbols-outlined"> {{ navList.icon }} </span>
             </div>
-            <p>{{ navList.text }}</p>
+            <a :href="navActive" class="nav-anchor">
+              <p>{{ navList.text }}</p>
+            </a>
           </li>
         </ul>
       </nav>
     </div>
 
-    <div class="me__container">
+    <div class="me__container" ref="myElement">
       <h1>Mark Ian Reyes</h1>
       <h3>Web Developer, UI/UX & Graphic Designer</h3>
       <p>
@@ -83,6 +85,7 @@ export default {
   data() {
     return {
       progressBar: null,
+      navActive: "",
       navLists: [
         {
           icon: "face_6",
@@ -90,6 +93,7 @@ export default {
           active: false,
           pointActive: false,
           progressBar: "calc(40% + 10px)",
+          content: "#about",
         },
         {
           icon: "business_center",
@@ -97,6 +101,7 @@ export default {
           active: false,
           pointActive: false,
           progressBar: "calc(40% + 60px)",
+          content: "#experience",
         },
         {
           icon: "laptop_mac",
@@ -104,6 +109,7 @@ export default {
           active: false,
           pointActive: false,
           progressBar: "calc(40% + 100px)",
+          content: "#projects",
         },
         {
           icon: "mail",
@@ -111,6 +117,7 @@ export default {
           active: false,
           pointActive: false,
           progressBar: "calc(40% + 160px)",
+          content: "#contact",
         },
       ],
     };
@@ -133,11 +140,13 @@ export default {
       });
     },
     // this will toggle only one item on the list
-    toggleActiveNav(clickedNav, bar) {
+    toggleActiveNav(clickedNav, bar, content) {
       this.navLists.forEach((navList) => {
         navList.active = navList === clickedNav;
         this.progressBar = bar;
       });
+
+      this.navActive = content;
 
       if (clickedNav.text === "About") {
         this.navLists.forEach((navList) => {
@@ -172,17 +181,18 @@ export default {
 /**********************************************
 **** Header Properties
 **********************************************/
+
 header {
-  @apply relative flex h-full min-h-screen pt-[2rem];
+  @apply relative top-[-2rem] flex h-full min-h-screen;
 }
-/* pb-[5.7rem] */
+/* pb-[5.7rem] pt-[2rem]*/
 
 /**********************************************
 **** Navigation Properties
 **********************************************/
 
 .navigation__container {
-  @apply relative h-full;
+  @apply relative h-full w-full;
 }
 
 .image__container {
@@ -303,6 +313,10 @@ header {
 **** Media Queries
 **********************************************/
 @media (min-width: 1000px) {
+  header {
+    @apply top-0 pt-[2rem];
+  }
+
   .image__container {
     @apply left-[-1rem];
   }

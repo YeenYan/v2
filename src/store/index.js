@@ -4,7 +4,7 @@ export default defineStore("index", {
   state: () => ({
     mobile: false,
     windowWidth: null,
-    activeContent: "#intro"
+    activeContent: ""
   }),
   getters: {
 

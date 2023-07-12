@@ -1,9 +1,14 @@
 <template>
-  <main>
-    <!-- <a :href="activeContent">Intro</a> -->
+  <!-- top element -->
+  <div id="info"></div>
+
+  <!-- for the Sticky Navigation -->
+  <StickyNav :class="{ stickyNav: !stick }" v-if="mobile" />
+
+  <main id="info">
     <ProfileNav />
-    <ContentContainer />
-    <Navigation v-if="mobile" @active-content="toggle" />
+    <ContentContainer ref="myElement" />
+    <Navigation v-if="mobile" />
   </main>
 
   <teleport to="body">
@@ -15,6 +20,7 @@
 import { mapWritableState, mapActions } from "pinia";
 import useIndexStore from "@/store/index";
 
+import StickyNav from "@/components/StickyNav.vue";
 import ProfileNav from "@/views/ProfileNav.vue";
 import ContentContainer from "@/views/ContentContainer.vue";
 import Navigation from "@/components/profile/Navigation.vue";
@@ -25,6 +31,7 @@ import patternBG from "./components/TopographyBG.vue";
 export default {
   name: "App",
   components: {
+    StickyNav,
     ProfileNav,
     ContentContainer,
     Navigation,
@@ -32,8 +39,7 @@ export default {
   },
   data() {
     return {
-      // mobile: false,
-      // windowWidth: null,
+      stick: false,
     };
   },
   computed: {
@@ -44,21 +50,38 @@ export default {
     window.addEventListener("resize", this.checkScreen);
     this.checkScreen();
   },
+  mounted() {
+    // Add scroll event listener to the window or a specific container
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed() {
+    // Remove scroll event listener when the component is destroyed
+    window.removeEventListener("scroll", this.handleScroll);
+  },
   methods: {
     ...mapActions(useIndexStore, ["checkScreen"]),
     toggle() {
       this.activeContent = "#intro";
-      // return "#intro";
-      // alert(this.activeContent);
     },
-    // checkScreen() {
-    //   this.windowWidth = window.innerWidth;
-    //   if (this.windowWidth < 1000) {
-    //     this.mobile = true;
-    //     return;
-    //   }
-    //   this.mobile = false;
-    // },
+
+    handleScroll() {
+      try {
+        const element = this.$refs.myElement.$el;
+        const rect = element.getBoundingClientRect(); // Get the position and size of the element
+
+        // Access the properties of the rect object
+        const top = rect.top; // Top position relative to the viewport
+
+        // Perform actions based on the element's position during scrolling
+        // For example, update data properties, trigger animations, etc.
+        this.doSomethingWhileScrolling(top);
+      } catch (error) {
+        console.log(`CHECK THIS!!!!!! ${error}`);
+      }
+    },
+    doSomethingWhileScrolling(top) {
+      top < 0 ? (this.stick = true) : (this.stick = false);
+    },
   },
 };
 </script>
@@ -97,6 +120,14 @@ html {
 
 body {
   @apply w-full min-h-full overflow-x-hidden font-inter;
+}
+
+.stickyNav {
+  transform: translateY(-6rem);
+}
+
+.hide {
+  @apply absolute;
 }
 
 main {
