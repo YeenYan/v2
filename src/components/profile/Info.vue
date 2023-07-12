@@ -9,7 +9,7 @@
         <img src="@/components/icons/myLogo_black.svg" alt="My Logo" />
       </div>
       <!-- navigation -->
-      <nav class="navigation__wrapper">
+      <nav class="navigation__wrapper" v-if="!mobile">
         <div class="line">
           <div class="progress" :style="{ height: progressBar }"></div>
         </div>
@@ -60,6 +60,9 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "pinia";
+import useIndexStore from "@/store/index";
+
 import github from "@/components/icons/social/github.vue";
 import linkedin from "@/components/icons/social/linkedin.vue";
 import codepen from "@/components/icons/social/codepen.vue";
@@ -112,7 +115,16 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapState(useIndexStore, ["mobile"]),
+  },
+  created() {
+    // Check whenever the screen size is changing
+    window.addEventListener("resize", this.checkScreen);
+    this.checkScreen();
+  },
   methods: {
+    ...mapActions(useIndexStore, ["checkScreen"]),
     logoToggle() {
       this.progressBar = "calc(0% + 0px)";
       this.navLists.forEach((navList) => {
@@ -174,7 +186,7 @@ header {
 }
 
 .image__container {
-  @apply relative left-[-1rem] w-full max-w-[5rem] cursor-pointer;
+  @apply relative left-0 w-full max-w-[5rem] cursor-pointer;
 }
 
 .navigation__wrapper {
@@ -242,7 +254,7 @@ header {
 **********************************************/
 
 .me__container {
-  @apply absolute top-[5rem] ml-[1.3rem];
+  @apply absolute top-[5rem] ml-0;
 }
 
 .me__container h1,
@@ -251,36 +263,15 @@ header {
 }
 
 .me__container h1 {
-  @apply text-[2.3rem] font-bold;
+  @apply text-[2.3rem] sm:text-[2.8rem] md:text-[3.3rem] font-bold;
 }
 
 .me__container h3 {
-  @apply text-lg font-medium min-w-[90%];
+  @apply text-lg sm:text-[1.18rem] md:text-xl font-medium min-w-[90%];
 }
 
 .me__container p {
-  @apply text-base text-neutral-600 w-full max-w-[25rem] mt-[.8rem];
-}
-
-/* H1 support */
-@supports (font-size: clamp(2.3rem, 5vw, 3.3rem)) {
-  .me__container h1 {
-    font-size: clamp(2.3rem, 5vw, 3.3rem);
-  }
-}
-
-/* H3 support */
-@supports (font-size: clamp(1.125rem, 5vw, 1.25rem)) {
-  .me__container h3 {
-    font-size: clamp(1.125rem, 5vw, 1.25rem);
-  }
-}
-
-/* p support */
-@supports (font-size: clamp(0.875rem, 5vw, 1rem)) {
-  .me__container p {
-    font-size: clamp(0.875rem, 5vw, 1rem);
-  }
+  @apply text-sm sm:text-[.9rem] md:text-base text-neutral-600 w-full max-w-[25rem] mt-[.8rem];
 }
 
 /**********************************************
@@ -312,8 +303,12 @@ header {
 **** Media Queries
 **********************************************/
 @media (min-width: 1000px) {
+  .image__container {
+    @apply left-[-1rem];
+  }
+
   .me__container {
-    @apply mt-[.8rem];
+    @apply mt-[.8rem] ml-[1.3rem];
   }
 
   .social__wrapper {

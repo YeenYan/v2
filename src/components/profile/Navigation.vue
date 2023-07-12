@@ -5,10 +5,10 @@
         <li
           v-for="navList in navLists"
           :key="navList.text"
-          @click.prevent="toggleActiveNav(navList)"
           :class="{ active: navList.active }"
+          @click.capture="toggleActiveNav(navList, navList.content)"
         >
-          <a>
+          <a :href="navActive">
             <span class="material-symbols-outlined"> {{ navList.icon }} </span>
             <p>{{ navList.text }}</p>
           </a>
@@ -24,37 +24,49 @@ export default {
   name: "Navigation",
   data() {
     return {
+      navActive: "",
       navLists: [
         {
           icon: "face_6",
           text: "about me",
           active: false,
+          content: "#about",
         },
         {
           icon: "business_center",
           text: "experience",
           active: false,
+          content: "#experience",
         },
         {
           icon: "laptop_mac",
           text: "projects",
           active: false,
+          content: "#projects",
         },
         {
           icon: "mail",
           text: "contact",
           active: false,
+          content: "#contact",
         },
       ],
     };
   },
+  computed: {},
   methods: {
     // this will toggle only one item on the list
-    toggleActiveNav(clickedNav) {
+    toggleActiveNav(clickedNav, content) {
       this.navLists.forEach((navList) => {
         navList.active = navList === clickedNav;
       });
+
+      this.navActive = content;
     },
+
+    // toggleNav() {
+    //   this.navActive = !this.navActive;
+    // },
   },
 };
 </script>
@@ -79,7 +91,7 @@ export default {
 }
 
 .navigation ul li a {
-  @apply relative flex flex-col items-center justify-center text-center w-full;
+  @apply relative flex flex-col items-center justify-center text-center w-full z-30;
 }
 
 .navigation ul li a span {
@@ -106,6 +118,7 @@ export default {
 
 .indicator {
   @apply absolute top-[-2.5rem] w-[5.3rem] h-[5.3rem] bg-shades-white rounded-full;
+  box-shadow: 0px -7px 7px 0px rgba(0, 0, 0, 0.05);
   opacity: 0;
   transition: 0.3s;
   transform: translateY(2rem);
@@ -143,6 +156,10 @@ export default {
 .navigation ul li:nth-child(4).active ~ .indicator {
   transform: translateX(calc(25% * 12));
 }
+
+/**********************************************
+**** Media Queries Properties
+**********************************************/
 
 @media (max-width: 400px) {
   .mobileNav {

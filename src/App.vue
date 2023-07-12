@@ -1,8 +1,9 @@
 <template>
   <main>
+    <!-- <a :href="activeContent">Intro</a> -->
     <ProfileNav />
     <ContentContainer />
-    <Navigation />
+    <Navigation v-if="mobile" @active-content="toggle" />
   </main>
 
   <teleport to="body">
@@ -11,8 +12,11 @@
 </template>
 
 <script>
-import ProfileNav from "@/components/ProfileNav.vue";
-import ContentContainer from "@/components/ContentContainer.vue";
+import { mapWritableState, mapActions } from "pinia";
+import useIndexStore from "@/store/index";
+
+import ProfileNav from "@/views/ProfileNav.vue";
+import ContentContainer from "@/views/ContentContainer.vue";
 import Navigation from "@/components/profile/Navigation.vue";
 
 // For Body Background SVG image
@@ -26,6 +30,36 @@ export default {
     Navigation,
     patternBG,
   },
+  data() {
+    return {
+      // mobile: false,
+      // windowWidth: null,
+    };
+  },
+  computed: {
+    ...mapWritableState(useIndexStore, ["mobile", "activeContent"]),
+  },
+  created() {
+    // Check whenever the screen size is changing
+    window.addEventListener("resize", this.checkScreen);
+    this.checkScreen();
+  },
+  methods: {
+    ...mapActions(useIndexStore, ["checkScreen"]),
+    toggle() {
+      this.activeContent = "#intro";
+      // return "#intro";
+      // alert(this.activeContent);
+    },
+    // checkScreen() {
+    //   this.windowWidth = window.innerWidth;
+    //   if (this.windowWidth < 1000) {
+    //     this.mobile = true;
+    //     return;
+    //   }
+    //   this.mobile = false;
+    // },
+  },
 };
 </script>
 
@@ -35,6 +69,14 @@ export default {
 /* * {
   @apply outline-1 outline-red-500 outline;
 } */
+
+.guide {
+  @apply outline-1 outline-red-500 outline;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 /* Scrollbar Styles */
 html {

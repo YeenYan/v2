@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Info from "./profile/Info.vue";
+import Info from "@/components/profile/Info.vue";
 
 export default {
   name: "ProfileNav",
