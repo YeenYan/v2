@@ -31,4 +31,14 @@ export default {
 section {
   @apply w-full h-fit mx-auto;
 }
+
+section div {
+  @apply h-full min-h-screen py-[6rem] my-[5rem];
+}
+
+@media (min-width: 1000px) {
+  section div {
+    @apply py-[2.2rem];
+  }
+}
 </style>

@@ -5,7 +5,7 @@
   <!-- for the Sticky Navigation -->
   <StickyNav :class="{ stickyNav: !stick }" v-if="mobile" />
 
-  <main id="info">
+  <main>
     <ProfileNav />
     <ContentContainer ref="myElement" />
     <Navigation v-if="mobile" />
@@ -131,12 +131,27 @@ body {
 }
 
 main {
-  @apply w-[85%] mx-auto min-h-screen;
+  @apply relative w-[85%] mx-auto min-h-screen;
+}
+
+.gen-contentText {
+  @apply text-sm text-neutral-800 sm:text-base;
 }
 
 @media (min-width: 1000px) {
   main {
     @apply grid grid-cols-2 max-w-[72rem] mx-auto min-h-screen;
+    grid-template-areas: "info content";
+  }
+
+  main section:first-child {
+    @apply fixed;
+  }
+
+  /* Content Section */
+  main section:last-child {
+    @apply relative right-0 justify-self-end;
+    grid-area: content;
   }
 }
 </style>

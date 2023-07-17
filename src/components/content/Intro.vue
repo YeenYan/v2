@@ -4,7 +4,7 @@
       <img src="../../assets/images/intro-myImage.svg" alt="My intro image" />
     </div>
 
-    <p class="intro-text">
+    <p class="intro-text gen-contentText">
       Hi, my name is Mark Ian, and I have a passion for creating things that come alive on
       the internet. From design to coding, I enjoy the entire process of bringing ideas to
       life online.
@@ -34,7 +34,7 @@ export default {
 }
 
 .info__container {
-  @apply flex flex-col items-center justify-center gap-10 w-full h-full min-h-screen my-[5rem] mx-auto;
+  @apply flex flex-col items-center justify-center gap-10 w-full mx-auto;
 }
 
 .image__wrapper {
@@ -42,7 +42,7 @@ export default {
 }
 
 .intro-text {
-  @apply text-sm sm:text-base md:text-lg w-full;
+  @apply w-full;
 }
 
 /**********************************************

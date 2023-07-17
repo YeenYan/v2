@@ -330,7 +330,7 @@ header {
   }
 
   .resume__wrapper {
-    @apply mb-0 bottom-0 left-[-58%] gap-5 mb-[2rem];
+    @apply mb-0 bottom-0 left-[-22%] gap-5 mb-[2rem];
   }
 }
 </style>
