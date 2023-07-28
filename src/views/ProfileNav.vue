@@ -18,7 +18,7 @@ export default {
 
 <style lang="postcss" scoped>
 section {
-  @apply relative w-full h-screen min-h-screen;
+  @apply relative w-full h-screen min-h-screen mx-auto;
 }
 
 @media (min-width: 1000px) {

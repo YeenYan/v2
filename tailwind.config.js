@@ -20,6 +20,14 @@ module.exports = {
         primary: {
           500: '#FBAF3F',
         },
+        error: {
+          50: "#FEF3F2",
+          300: "#FDA29B",
+          500: "#F04438",
+          600: "#D63D32",
+          700: "#B32318",
+          900: "#7A271A",
+        },
         shades: {
           'white': '#FFFFFF'
         }

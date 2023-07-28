@@ -1,10 +1,14 @@
 <template>
-  <div class="about__container" id="about">
+  <div class="section-title" :class="elementIsAtTop ? 'active' : ''" v-if="mobile">
+    <div class="section-line"></div>
+    <p>about me.</p>
+  </div>
+  <div class="about__container" id="about" ref="sectionElement">
     <content-header>
       <template #title>about me.</template>
     </content-header>
 
-    <div class="about-content__wrapper">
+    <div class="about-content__wrapper" ref="elementToTrack">
       <!-- first paragraph -->
       <div>
         <p class="gen-contentText">
@@ -20,9 +24,15 @@
         </div>
         <p class="gen-contentText">
           It turned out that I enjoyed coding and solving complex problems. Jumping to the
-          present, I have developed my creative side while working as a graphic designer
-          for over three years. With an impeccable eye for design and a knack for coding,
-          I specialize in transforming ideas into captivating online experiences.
+          present, I have developed my
+          <span class="creative-side"
+            ><a href="https://www.behance.net/MarkIanCreative" target="_blank"
+              >creative side</a
+            ></span
+          >
+          while working as a graphic designer for over three years. With an impeccable eye
+          for design and a knack for coding, I specialize in transforming ideas into
+          captivating online experiences.
         </p>
       </div>
 
@@ -59,26 +69,97 @@
 </template>
 
 <script>
+import { mapWritableState, mapActions } from "pinia";
+import useIndexStore from "@/store/index";
+
 import Skills from "./Skills.vue";
 
 export default {
   name: "AboutMe",
+  emits: ["about-trigger"],
   components: {
     Skills,
   },
   data() {
     return {
       readMore: false,
+      elementIsAtTop: false,
+      elAnimation: false,
     };
   },
+  beforeMount() {
+    window.addEventListener("scroll", this.checkIfElementAtTop);
+  },
+  mounted() {
+    window.addEventListener("scroll", this.checkIfElementAtTop);
+    window.addEventListener("resize", this.checkScreen);
+    this.checkScreen();
+  },
+  created() {
+    window.removeEventListener("scroll", this.checkIfElementAtTop);
+    // Check whenever the screen size is changing
+    window.addEventListener("resize", this.checkScreen);
+    this.checkScreen();
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.checkIfElementAtTop);
+    window.removeEventListener("resize", this.checkScreen);
+  },
   computed: {
+    ...mapWritableState(useIndexStore, ["activeSection", "activeContent", "mobile"]),
     expandIcon() {
       return !this.readMore ? "more" : "less";
     },
   },
   methods: {
+    ...mapActions(useIndexStore, ["checkScreen", "toggleActiveNavStore"]),
     toggleReadMore() {
       this.readMore = !this.readMore;
+    },
+
+    triggerAboutTrigger() {
+      this.$emit("about-trigger");
+    },
+
+    checkIfElementAtTop() {
+      const element = this.$refs.elementToTrack;
+      const sectionBottom = this.$refs.sectionElement.getBoundingClientRect().bottom;
+
+      try {
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Check if the element's top is at or above the top of the viewport
+          this.elementIsAtTop = rect.top <= 0;
+          // console.log(rect.top);
+
+          // console.log(this.navLists[0].text);
+
+          const aboutViewportHeight = window.innerHeight + 200;
+          const aboutSectionHalfwayPoint = rect.top + rect.height / 2;
+
+          // console.log(`section: ${aboutSectionHalfwayPoint}`);
+          // console.log(`viewport: ${aboutViewportHeight}`);
+
+          // trigger the animations
+          if (aboutSectionHalfwayPoint <= aboutViewportHeight) {
+            // console.log("Top section is halfway in the browser view.");
+            this.triggerAboutTrigger();
+
+            // console.log(this.navLists);
+          } else if (aboutSectionHalfwayPoint > aboutViewportHeight) {
+          }
+
+          if (this.elementIsAtTop) {
+            // Do something here
+            // console.log("=====top=======");
+          }
+          if (sectionBottom < 0) {
+            this.elementIsAtTop = false;
+          }
+        }
+      } catch (error) {
+        // console.log(error);
+      }
     },
   },
 };
@@ -91,6 +172,11 @@ export default {
 
 .about-content__wrapper {
   @apply grid gap-5;
+}
+
+.creative-side {
+  @apply cursor-pointer font-bold hover:text-primary-500;
+  transition: 0.3s;
 }
 
 /* .about-content__wrapper > p {

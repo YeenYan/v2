@@ -46,17 +46,31 @@
   <!-- Social Links -->
   <div class="links__container">
     <div class="social__wrapper">
-      <github class="social-icons" />
-      <linkedin class="social-icons" />
-      <codepen class="social-icons" />
-      <behance class="social-icons" />
-      <facebook class="social-icons" />
-      <instagram class="social-icons" />
+      <a href="https://github.com/YeenYan" target="_blank">
+        <github class="social-icons" />
+      </a>
+      <a href="https://www.linkedin.com/in/mark-ian-reyes/" target="_blank">
+        <linkedin class="social-icons" />
+      </a>
+      <a href="https://codepen.io/YeenYan" target="_blank">
+        <codepen class="social-icons" />
+      </a>
+      <a href="https://www.behance.net/MarkIanCreative" target="_blank">
+        <behance class="social-icons" />
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=100070147221810" target="_blank">
+        <facebook class="social-icons" />
+      </a>
+      <a href="https://www.instagram.com/yeenyan07/" target="_blank">
+        <instagram class="social-icons" />
+      </a>
     </div>
 
     <div class="resume__wrapper">
       <div class="resume-line"></div>
-      <a href="../../../public/resume.pdf" target="_blank">Resume</a>
+      <a href="../../../public/resume.pdf" target="_blank"
+        >Resume <span class="material-symbols-outlined"> open_in_new </span></a
+      >
     </div>
   </div>
 </template>
@@ -183,7 +197,7 @@ export default {
 **********************************************/
 
 header {
-  @apply relative top-[-2rem] flex h-full min-h-screen;
+  @apply relative top-[2rem] flex h-full min-h-screen;
 }
 /* pb-[5.7rem] pt-[2rem]*/
 
@@ -293,16 +307,21 @@ header {
 }
 
 .social-icons {
-  @apply w-[1.56rem] fill-neutral-400 hover:scale-110 cursor-pointer;
+  @apply w-[1.56rem] fill-neutral-400 hover:scale-125 cursor-pointer;
   transition: 0.3s ease-in-out;
 }
 
 .resume__wrapper {
-  @apply absolute bottom-[15%] left-[-50%] flex items-center gap-2 w-full mb-[1.5rem];
+  @apply absolute bottom-[15%] left-[-40%] flex items-center gap-2 w-full mb-[1.5rem];
 }
 
 .resume__wrapper > a {
-  @apply grid place-content-center bg-primary-500 text-neutral-800 font-medium w-full max-w-[8.75rem] px-2.5 py-2.5 rounded-full;
+  @apply flex items-center justify-center gap-2 bg-primary-500 text-neutral-800 font-medium font-code w-full px-[1rem] py-2.5 rounded-full border-[2px] border-neutral-800  max-w-[10rem];
+  /* max-w-[8.75rem] */
+}
+
+.resume__wrapper > a span {
+  @apply text-[1.3rem] font-medium;
 }
 
 .resume-line {
@@ -330,7 +349,7 @@ header {
   }
 
   .resume__wrapper {
-    @apply mb-0 bottom-0 left-[-22%] gap-5 mb-[2rem];
+    @apply mb-0 bottom-0 left-[-23.5%] gap-5 mb-[2rem];
   }
 }
 </style>

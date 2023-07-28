@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapActions } from "pinia";
 import useIndexStore from "@/store/index";
 
 export default {
@@ -60,19 +60,19 @@ export default {
     ...mapWritableState(useIndexStore, ["activeContent"]),
   },
   methods: {
-    // this will toggle only one item on the list
     toggleActiveNav(clickedNav, content) {
       this.navLists.forEach((navList) => {
         navList.active = navList === clickedNav;
       });
-
       this.activeContent = true;
       this.navActive = content;
-    },
 
-    // toggleNav() {
-    //   this.navActive = !this.navActive;
-    // },
+      this.$emit("navTrigger");
+    },
+    toggleNav() {
+      this.navActive = !this.navActive;
+      alert(this.navActive);
+    },
   },
 };
 </script>

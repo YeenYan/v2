@@ -1,10 +1,14 @@
 <template>
-  <div class="exp__container" id="experience">
+  <div class="section-title" :class="elementIsAtTop ? 'active' : ''" v-if="mobile">
+    <div class="section-line"></div>
+    <p>career path.</p>
+  </div>
+  <div class="exp__container" id="experience" ref="sectionElement">
     <content-header>
       <template #title>career path.</template>
     </content-header>
 
-    <ul class="exp-content__wrapper">
+    <ul class="exp-content__wrapper" ref="elementToTrack">
       <li class="exp-content-group" v-for="exp in experiences" :key="exp">
         <div class="designation__wrapper">
           <p class="position">{{ exp.position }}</p>
@@ -31,13 +35,16 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "pinia";
+import { mapWritableState, mapActions } from "pinia";
 import useIndexStore from "@/store/index";
 
 export default {
   name: "Experience",
+  emits: ["exp-trigger", "nav-trigger"],
   data() {
     return {
+      elementIsAtTop: false,
+      elAnimation: false,
       experiences: [
         {
           position: "Jr. Web Developer",
@@ -67,7 +74,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(useIndexStore, ["mobile"]),
+    ...mapWritableState(useIndexStore, ["activeSection", "activeContent", "mobile"]),
+  },
+  mounted() {
+    window.addEventListener("scroll", this.checkIfElementAtTop);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.checkIfElementAtTop);
   },
   created() {
     // Check whenever the screen size is changing
@@ -76,6 +89,51 @@ export default {
   },
   methods: {
     ...mapActions(useIndexStore, ["checkScreen"]),
+    triggerExpTrigger() {
+      this.$emit("exp-trigger");
+    },
+
+    checkIfElementAtTop() {
+      const element = this.$refs.elementToTrack;
+      const sectionBottom = this.$refs.sectionElement.getBoundingClientRect().bottom;
+
+      try {
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Check if the element's top is at or above the top of the viewport
+          this.elementIsAtTop = rect.top <= 0;
+          // console.log(rect.top);
+
+          const expViewportHeight = window.innerHeight + 300;
+          const expSectionHalfwayPoint = rect.top + rect.height / 2;
+
+          // console.log(`section: ${expSectionHalfwayPoint}`);
+          // console.log(`viewport: ${expViewportHeight}`);
+
+          // trigger the animations
+          if (expSectionHalfwayPoint <= expViewportHeight) {;
+            this.triggerExpTrigger();
+          } else if (expSectionHalfwayPoint > expViewportHeight) {
+          }
+
+          if (this.elementIsAtTop) {
+            // Do something here
+          }
+          if (sectionBottom < 0) {
+            this.elementIsAtTop = false;
+          }
+        }
+      } catch (error) {
+        // console.log(error);
+      }
+    },
+  },
+  watch: {
+    activeSection(newSection, oldSection) {
+      if (newSection === "career") {
+        alert("careeeeeeeeer");
+      }
+    },
   },
 };
 </script>
@@ -83,6 +141,7 @@ export default {
 <style lang="postcss" scoped>
 .exp__container {
   @apply h-full min-h-screen;
+  /*  py-[6rem] */
 }
 
 .exp-content__wrapper {

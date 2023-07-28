@@ -3,12 +3,12 @@
   <div id="info"></div>
 
   <!-- for the Sticky Navigation -->
-  <StickyNav :class="{ stickyNav: !stick }" v-if="mobile" />
 
+  <!-- <StickyNav :class="{ stickyNav: !stick }" /> -->
   <main>
     <ProfileNav />
-    <ContentContainer ref="myElement" />
-    <Navigation v-if="mobile" />
+    <ContentContainer />
+    <!-- <Navigation v-if="mobile" /> -->
   </main>
 
   <teleport to="body">
@@ -23,7 +23,7 @@ import useIndexStore from "@/store/index";
 import StickyNav from "@/components/StickyNav.vue";
 import ProfileNav from "@/views/ProfileNav.vue";
 import ContentContainer from "@/views/ContentContainer.vue";
-import Navigation from "@/components/profile/Navigation.vue";
+// import Navigation from "@/components/profile/Navigation.vue";
 
 // For Body Background SVG image
 import patternBG from "./components/TopographyBG.vue";
@@ -34,7 +34,7 @@ export default {
     StickyNav,
     ProfileNav,
     ContentContainer,
-    Navigation,
+    // Navigation,
     patternBG,
   },
   data() {
@@ -43,44 +43,17 @@ export default {
     };
   },
   computed: {
-    ...mapWritableState(useIndexStore, ["mobile", "activeContent"]),
+    ...mapWritableState(useIndexStore, ["mobile", "activeContent", "activeSection"]),
   },
   created() {
     // Check whenever the screen size is changing
     window.addEventListener("resize", this.checkScreen);
     this.checkScreen();
   },
-  mounted() {
-    // Add scroll event listener to the window or a specific container
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  destroyed() {
-    // Remove scroll event listener when the component is destroyed
-    window.removeEventListener("scroll", this.handleScroll);
-  },
   methods: {
     ...mapActions(useIndexStore, ["checkScreen"]),
     toggle() {
       this.activeContent = "#intro";
-    },
-
-    handleScroll() {
-      try {
-        const element = this.$refs.myElement.$el;
-        const rect = element.getBoundingClientRect(); // Get the position and size of the element
-
-        // Access the properties of the rect object
-        const top = rect.top; // Top position relative to the viewport
-
-        // Perform actions based on the element's position during scrolling
-        // For example, update data properties, trigger animations, etc.
-        this.doSomethingWhileScrolling(top);
-      } catch (error) {
-        console.log(`CHECK THIS!!!!!! ${error}`);
-      }
-    },
-    doSomethingWhileScrolling(top) {
-      top < 0 ? (this.stick = true) : (this.stick = false);
     },
   },
 };
@@ -88,9 +61,13 @@ export default {
 
 <style lang="postcss">
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
-
-/* * {
+/* 
+* {
   @apply outline-1 outline-red-500 outline;
+} */
+
+/* .stickNav {
+  @apply z-[9999] bg-primary-500;
 } */
 
 .guide {
@@ -122,9 +99,9 @@ body {
   @apply w-full min-h-full overflow-x-hidden font-inter;
 }
 
-.stickyNav {
+/* .stickyNav {
   transform: translateY(-6rem);
-}
+} */
 
 .hide {
   @apply absolute;
@@ -136,6 +113,68 @@ main {
 
 .gen-contentText {
   @apply text-sm text-neutral-800 sm:text-base;
+}
+
+.about__container,
+.exp__container,
+.projects__container,
+.contact__container,
+.ty__wrapper {
+  @apply h-full min-h-screen py-[3rem] my-[5rem];
+}
+
+@media (min-width: 1000px) {
+  .about__container,
+  .exp__container,
+  .projects__container,
+  .contact__container,
+  .ty__wrapper {
+    @apply py-[2.2rem];
+  }
+}
+
+/* ======================================== */
+/* ======================================== */
+
+.section-title {
+  @apply fixed top-0 right-[-1.5rem] flex justify-end items-center gap-2 z-50 bg-shades-white py-[.5rem] px-[2rem] rounded-full;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  transform: translateX(-5rem);
+  transition: 0.5s;
+}
+
+.section-line {
+  @apply bg-primary-500 h-[.5rem] w-[2rem] rounded-full;
+}
+
+.section-title p {
+  @apply font-code text-neutral-800 font-medium;
+}
+
+.section-title.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.loader {
+  border: 2px solid #1e293b;
+  border-left-color: transparent;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (min-width: 1000px) {
