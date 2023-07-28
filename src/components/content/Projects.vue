@@ -49,7 +49,13 @@
 import { mapWritableState, mapActions } from "pinia";
 import useIndexStore from "@/store/index";
 
-// import sads from "../../assets/images/project/TakeNoteSS.png"
+import TakeNoteSS from "@/assets/images/project/TakeNoteSS.png";
+import Portfolio from "@/assets/images/proj-img.svg";
+import BusinessListing from "@/assets/images/project/BusinessListingSS.png";
+import lucky9Game from "@/assets/images/project/lucky9Game.png";
+import SpaceTourism from "@/assets/images/project/SpaceTourism.png";
+import GuessMyNumber from "@/assets/images/project/GuessMyNumber.png";
+import Mapty from "@/assets/images/project/Mapty.png";
 
 import htmlIcon from "@/components/icons/tech/html.vue";
 import cssIcon from "@/components/icons/tech/css.vue";
@@ -87,7 +93,7 @@ export default {
       maxVisibleItems: 4,
       techs: [
         {
-          image: "src/assets/images/project/TakeNoteSS.png",
+          image: TakeNoteSS,
           title: "TakeNote App",
           type: "Side project",
           desc:
@@ -97,7 +103,7 @@ export default {
         },
 
         {
-          image: "src/assets/images/proj-img.svg",
+          image: Portfolio,
           title: "Personal Website V2",
           type: "Side project",
           desc:
@@ -107,7 +113,7 @@ export default {
         },
 
         {
-          image: "src/assets/images/project/BusinessListingSS.png",
+          image: BusinessListing,
           title: "Business Listing",
           type: "Learning project",
           desc:
@@ -116,7 +122,7 @@ export default {
           techLink: "https://yeenyan.github.io/Business_and_Directory_Listing/",
         },
         {
-          image: "src/assets/images/project/lucky9Game.png",
+          image: lucky9Game,
           title: "Lucky9 Card Game V1",
           type: "Side project",
           desc:
@@ -125,7 +131,7 @@ export default {
           techLink: "https://lucky9cardgame.netlify.app/",
         },
         {
-          image: "src/assets/images/project/SpaceTourism.png",
+          image: SpaceTourism,
           title: "Space Tourism",
           type: "Learning project",
           desc:
@@ -134,7 +140,7 @@ export default {
           techLink: "https://yeenyan.github.io/Space-Tourism/",
         },
         {
-          image: "src/assets/images/project/GuessMyNumber.png",
+          image: GuessMyNumber,
           title: "Guess My Number",
           type: "Side project",
           desc:
@@ -143,7 +149,7 @@ export default {
           techLink: "https://yeenyan.github.io/GuessMyNumber/",
         },
         {
-          image: "src/assets/images/project/Mapty.png",
+          image: Mapty,
           title: "Mapty App",
           type: "Learning project",
           desc:

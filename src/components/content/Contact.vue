@@ -58,7 +58,7 @@
   <!-- ============================= -->
   <!-- After submittion -->
 
-  <div class="ty__wrapper guide" id="contact" ref="sectionElement" v-if="tyForm">
+  <div class="ty__wrapper" id="contact" ref="sectionElement" v-if="tyForm">
     <checkSign />
     <h2 ref="elementToTrack">Thank You!</h2>
     <p class="ty-msg">
@@ -225,14 +225,14 @@ export default {
 
         axios.defaults.headers.post["Content-Type"] = "application/json";
         axios
-          .post("https://formsubmit.co/ajax/markian.dev07@gmail.com", {
+          .post("https://formsubmit.co/ajax/5873f34fa7ff47d5cdc91dd513b5d416", {
             name: this.name,
             email: this.email,
             message: this.message,
           })
           .then((response) => {
             console.log(response);
-            alert("success");
+            // alert("success");
             this.name = "";
             this.email = "";
             this.message = "";
