@@ -49,6 +49,8 @@
 import { mapWritableState, mapActions } from "pinia";
 import useIndexStore from "@/store/index";
 
+// import sads from "../../assets/images/project/TakeNoteSS.png"
+
 import htmlIcon from "@/components/icons/tech/html.vue";
 import cssIcon from "@/components/icons/tech/css.vue";
 import sassIcon from "@/components/icons/tech/sass.vue";
@@ -85,7 +87,7 @@ export default {
       maxVisibleItems: 4,
       techs: [
         {
-          image: "src/assets/images/proj-img.svg",
+          image: "src/assets/images/project/TakeNoteSS.png",
           title: "TakeNote App",
           type: "Side project",
           desc:
@@ -105,7 +107,7 @@ export default {
         },
 
         {
-          image: "src/assets/images/proj-img.svg",
+          image: "src/assets/images/project/BusinessListingSS.png",
           title: "Business Listing",
           type: "Learning project",
           desc:
@@ -114,7 +116,7 @@ export default {
           techLink: "https://yeenyan.github.io/Business_and_Directory_Listing/",
         },
         {
-          image: "src/assets/images/proj-img.svg",
+          image: "src/assets/images/project/lucky9Game.png",
           title: "Lucky9 Card Game V1",
           type: "Side project",
           desc:
@@ -123,7 +125,7 @@ export default {
           techLink: "https://lucky9cardgame.netlify.app/",
         },
         {
-          image: "src/assets/images/proj-img.svg",
+          image: "src/assets/images/project/SpaceTourism.png",
           title: "Space Tourism",
           type: "Learning project",
           desc:
@@ -132,7 +134,7 @@ export default {
           techLink: "https://yeenyan.github.io/Space-Tourism/",
         },
         {
-          image: "src/assets/images/proj-img.svg",
+          image: "src/assets/images/project/GuessMyNumber.png",
           title: "Guess My Number",
           type: "Side project",
           desc:
@@ -141,7 +143,7 @@ export default {
           techLink: "https://yeenyan.github.io/GuessMyNumber/",
         },
         {
-          image: "src/assets/images/proj-img.svg",
+          image: "src/assets/images/project/Mapty.png",
           title: "Mapty App",
           type: "Learning project",
           desc:
@@ -263,7 +265,7 @@ export default {
 }
 
 .proj-image__wrapper {
-  @apply w-full;
+  @apply w-full outline outline-[1px] outline-neutral-200;
 }
 
 .proj-image__wrapper img {
