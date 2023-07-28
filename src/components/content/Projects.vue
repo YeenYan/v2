@@ -87,7 +87,7 @@ export default {
       maxVisibleItems: 4,
       techs: [
         {
-          image: "src/assets/images/project/TakeNoteSS.png",
+          image: "@/assets/images/project/TakeNoteSS.png",
           title: "TakeNote App",
           type: "Side project",
           desc:
