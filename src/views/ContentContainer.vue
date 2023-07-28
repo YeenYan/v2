@@ -1,11 +1,18 @@
 <template>
   <!-- <StickyNav :class="{ stickyNav: !stick }" /> -->
-  <section>
+  <!-- <section>
     <Intro @intro-trigger="handleIntroTrigger()" />
     <About @about-trigger="handleAboutTrigger()" />
     <Experience @exp-trigger="handleExpTrigger()" />
     <Projects @proj-trigger="handleProjTrigger()" />
     <Contact @contact-trigger="handleContactTrigger()" />
+  </section> -->
+  <section>
+    <Intro />
+    <About />
+    <Experience />
+    <Projects />
+    <Contact />
   </section>
 
   <nav class="mobileNav" v-if="mobile">

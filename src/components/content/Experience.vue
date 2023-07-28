@@ -28,7 +28,7 @@
       </li>
     </ul>
 
-    <a href="../../../public/resume.pdf" target="_blank" class="resumeBtn"
+    <a href="/resume.pdf" target="_blank" class="resumeBtn"
       >View Full Resume <span class="material-symbols-outlined"> arrow_forward </span></a
     >
   </div>
@@ -111,7 +111,7 @@ export default {
           // console.log(`viewport: ${expViewportHeight}`);
 
           // trigger the animations
-          if (expSectionHalfwayPoint <= expViewportHeight) {;
+          if (expSectionHalfwayPoint <= expViewportHeight) {
             this.triggerExpTrigger();
           } else if (expSectionHalfwayPoint > expViewportHeight) {
           }

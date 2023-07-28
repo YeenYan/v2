@@ -68,7 +68,7 @@
 
     <div class="resume__wrapper">
       <div class="resume-line"></div>
-      <a href="../../../public/resume.pdf" target="_blank"
+      <a href="/resume.pdf" target="_blank"
         >Resume <span class="material-symbols-outlined"> open_in_new </span></a
       >
     </div>
