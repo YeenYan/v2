@@ -61,7 +61,7 @@
     </p>
 
     <div class="image__wrapper">
-      <img src="../../assets/images/intro-myImage.svg" alt="My intro image" />
+      <img src="../../assets/images/MyImage-2.webp" alt="My intro image" />
     </div>
 
     <Skills />
@@ -230,7 +230,7 @@ export default {
 **** Image Properties
 **********************************************/
 .image__wrapper {
-  @apply w-full max-w-[25rem] mx-auto mt-[3.8rem];
+  @apply w-full max-w-[32rem] mx-auto mt-[3.8rem];
 }
 
 @media (min-width: 575px) {
