@@ -92,7 +92,7 @@ export default {
     };
   },
   computed: {
-    ...mapWritableState(useIndexStore, ["mobile"]),
+    ...mapWritableState(useIndexStore, ["mobile", "activeContent"]),
   },
   created() {
     // Check whenever the screen size is changing

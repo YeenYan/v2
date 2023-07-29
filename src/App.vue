@@ -6,13 +6,13 @@
 
   <!-- <StickyNav :class="{ stickyNav: !stick }" /> -->
   <main>
-    <ProfileNav />
-    <ContentContainer />
+    <ProfileNav @click.prevent="clearActiveContent" />
+    <ContentContainer @click.prevent="clearActiveContent" />
     <!-- <Navigation v-if="mobile" /> -->
   </main>
 
   <teleport to="body">
-    <patternBG />
+    <patternBG @click.prevent="clearActiveContent" />
   </teleport>
 </template>
 
@@ -54,6 +54,9 @@ export default {
     ...mapActions(useIndexStore, ["checkScreen"]),
     toggle() {
       this.activeContent = "#intro";
+    },
+    clearActiveContent() {
+      this.activeContent = null;
     },
   },
 };

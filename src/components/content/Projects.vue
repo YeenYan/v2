@@ -50,7 +50,7 @@ import { mapWritableState, mapActions } from "pinia";
 import useIndexStore from "@/store/index";
 
 import TakeNoteSS from "@/assets/images/project/TakeNoteSS.png";
-import Portfolio from "@/assets/images/proj-img.svg";
+import Portfolio from "@/assets/images/project/Portfolio.png";
 import BusinessListing from "@/assets/images/project/BusinessListingSS.png";
 import lucky9Game from "@/assets/images/project/lucky9Game.png";
 import SpaceTourism from "@/assets/images/project/SpaceTourism.png";

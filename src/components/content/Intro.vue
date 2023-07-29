@@ -1,7 +1,7 @@
 <template>
   <div class="info__container" id="intro" ref="sectionElement">
     <div class="image__wrapper" ref="elementToTrack">
-      <img src="../../assets/images/intro-myImage.svg" alt="My intro image" />
+      <img src="../../assets/images/MyImage-1.webp" alt="My intro image" />
     </div>
 
     <p class="intro-text gen-contentText">

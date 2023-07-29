@@ -17,13 +17,23 @@
         <form>
           <div class="input__wrapper">
             <label>Your Name</label>
-            <input type="text" v-model="name" placeholder="Enter your name" />
+            <input
+              type="text"
+              v-model="name"
+              placeholder="Enter your name"
+              :disabled="loading"
+            />
             <span v-if="errors.name" class="errorText">{{ errors.name }}</span>
           </div>
 
           <div class="input__wrapper">
             <label>Email Address</label>
-            <input type="email" v-model="email" placeholder="Enter your email address" />
+            <input
+              type="email"
+              v-model="email"
+              placeholder="Enter your email address"
+              :disabled="loading"
+            />
             <span v-if="errors.email" class="errorText">{{ errors.email }}</span>
           </div>
 
@@ -32,6 +42,7 @@
             <textarea
               v-model="message"
               placeholder="Hi, I think we need someone like you on our team. How soon can you hop on to discuss this?"
+              :disabled="loading"
             ></textarea>
             <span v-if="errors.message" class="errorText">{{ errors.message }}</span>
           </div>
