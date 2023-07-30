@@ -49,7 +49,7 @@
       <transition name="show">
         <p class="gen-contentText" v-if="readMore">
           When I'm not immersed in coding, you'll find me spending time with my loved
-          ones, engaging in workouts to stay physically fit, and playing strategic games
+          ones, and playing strategic games
           to practice and sharpen my analytical thinking.
         </p>
       </transition>
