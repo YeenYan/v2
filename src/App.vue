@@ -2,13 +2,19 @@
   <!-- top element -->
   <div id="info"></div>
 
-  <!-- for the Sticky Navigation -->
+  <div class="logoLoader" v-if="loading">
+    <LogoLoader />
+  </div>
 
-  <!-- <StickyNav :class="{ stickyNav: !stick }" /> -->
-  <main>
+  <!-- transitions -->
+  <div class="transition__wrapper" v-if="!loading && transitionAnim">
+    <div class="yellowRect"></div>
+    <div class="grayRect"></div>
+  </div>
+
+  <main v-if="!transitionAnim">
     <ProfileNav />
     <ContentContainer />
-    <!-- <Navigation v-if="mobile" /> -->
   </main>
 
   <teleport to="body">
@@ -19,6 +25,8 @@
 <script>
 import { mapWritableState, mapActions } from "pinia";
 import useIndexStore from "@/store/index";
+
+import LogoLoader from "@/components/loader/LogoLoader2.vue";
 
 import StickyNav from "@/components/StickyNav.vue";
 import ProfileNav from "@/views/ProfileNav.vue";
@@ -34,37 +42,54 @@ export default {
     StickyNav,
     ProfileNav,
     ContentContainer,
+    LogoLoader,
     // Navigation,
     patternBG,
   },
   data() {
     return {
       stick: false,
+      loading: false,
+      transitionAnim: true,
     };
   },
   computed: {
     ...mapWritableState(useIndexStore, ["mobile", "activeContent", "activeSection"]),
   },
   created() {
+    // this.loading = true;
     // Check whenever the screen size is changing
     window.addEventListener("resize", this.checkScreen);
     this.checkScreen();
+  },
+  mounted() {
+    this.loading = true;
+    this.startTimer();
   },
   methods: {
     ...mapActions(useIndexStore, ["checkScreen"]),
     toggle() {
       this.activeContent = "#intro";
     },
-    // clearActiveContent() {
-    //   this.activeContent = null;
-    // },
+    startTimer() {
+      setTimeout(() => {
+        this.loading = false;
+        // this.transitionAnim = true;
+        this.afterTransition();
+      }, 3000); // Timer set to 1 second (1000 milliseconds)
+    },
+    afterTransition() {
+      setTimeout(() => {
+        this.transitionAnim = false;
+      }, 1000); // Timer set to 1 second (1000 milliseconds)
+    },
   },
 };
 </script>
 
 <style lang="postcss">
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
-/* 
+/*
 * {
   @apply outline-1 outline-red-500 outline;
 } */
@@ -112,6 +137,10 @@ body {
 
 main {
   @apply relative w-[85%] mx-auto min-h-screen;
+}
+
+.logoLoader {
+  @apply grid place-items-center w-full h-full min-h-screen;
 }
 
 .gen-contentText {
@@ -180,6 +209,36 @@ main {
   }
 }
 
+.yellowRect {
+  @apply absolute top-0 w-screen h-screen bg-primary-500 z-[999];
+  transform: translateX(-20rem);
+  animation: yellowRectAnim 1.5s ease-in-out;
+}
+
+.grayRect {
+  @apply absolute top-0 w-screen h-screen bg-neutral-700 z-[999];
+  transform: translateX(-20rem);
+  animation: grayRectAnim 1.9s ease-in-out;
+}
+
+@keyframes yellowRectAnim {
+  0% {
+    transform: translateX(-40rem);
+  }
+  100% {
+    transform: translateX(100rem);
+  }
+}
+
+@keyframes grayRectAnim {
+  0% {
+    transform: translateX(-40rem);
+  }
+  100% {
+    transform: translateX(100rem);
+  }
+}
+
 @media (min-width: 1000px) {
   main {
     @apply grid grid-cols-2 max-w-[72rem] mx-auto min-h-screen;
@@ -194,6 +253,34 @@ main {
   main section:last-child {
     @apply relative right-0 justify-self-end;
     grid-area: content;
+  }
+
+  .yellowRect {
+    transform: translateX(-100rem);
+    animation: yellowRectAnim 1.5s ease-in-out;
+  }
+
+  .grayRect {
+    transform: translateX(-100rem);
+    animation: grayRectAnim 1.8s ease-in-out;
+  }
+
+  @keyframes yellowRectAnim {
+    0% {
+      transform: translateX(-100rem);
+    }
+    100% {
+      transform: translateX(100rem);
+    }
+  }
+
+  @keyframes grayRectAnim {
+    0% {
+      transform: translateX(-100rem);
+    }
+    100% {
+      transform: translateX(100rem);
+    }
   }
 }
 </style>

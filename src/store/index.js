@@ -5,6 +5,7 @@ export default defineStore("index", {
     mobile: false,
     windowWidth: null,
     activeContent: "",
+    loading: true,
 
     activeSection: null,
 
