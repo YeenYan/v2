@@ -49,30 +49,25 @@
 }
 
 .spinner div:nth-of-type(1) {
-  background-color: red;
   transform: translateZ(-4rem) rotateY(180deg);
 }
 
 .spinner div:nth-of-type(2) {
-  background-color: yellow;
   transform: rotateY(-270deg) translateX(50%);
   transform-origin: top right;
 }
 
 .spinner div:nth-of-type(3) {
-  background-color: blue;
   transform: rotateY(270deg) translateX(-50%);
   transform-origin: center left;
 }
 
 .spinner div:nth-of-type(4) {
-  background-color: green;
   transform: rotateX(90deg) translateY(-50%);
   transform-origin: top center;
 }
 
 .spinner div:nth-of-type(5) {
-  background-color: black;
   transform: rotateX(-90deg) translateY(50%);
   transform-origin: bottom center;
 }
