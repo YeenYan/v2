@@ -40,7 +40,6 @@ import useIndexStore from "@/store/index";
 
 export default {
   name: "Experience",
-  emits: ["exp-trigger", "nav-trigger"],
   data() {
     return {
       elementIsAtTop: false,
@@ -89,9 +88,6 @@ export default {
   },
   methods: {
     ...mapActions(useIndexStore, ["checkScreen"]),
-    triggerExpTrigger() {
-      this.$emit("exp-trigger");
-    },
 
     checkIfElementAtTop() {
       const element = this.$refs.elementToTrack;
@@ -112,7 +108,6 @@ export default {
 
           // trigger the animations
           if (expSectionHalfwayPoint <= expViewportHeight) {
-            this.triggerExpTrigger();
           } else if (expSectionHalfwayPoint > expViewportHeight) {
           }
 
@@ -125,13 +120,6 @@ export default {
         }
       } catch (error) {
         // console.log(error);
-      }
-    },
-  },
-  watch: {
-    activeSection(newSection, oldSection) {
-      if (newSection === "career") {
-        alert("careeeeeeeeer");
       }
     },
   },

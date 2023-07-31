@@ -6,13 +6,13 @@
 
   <!-- <StickyNav :class="{ stickyNav: !stick }" /> -->
   <main>
-    <ProfileNav @click.prevent="clearActiveContent" />
-    <ContentContainer @click.prevent="clearActiveContent" />
+    <ProfileNav />
+    <ContentContainer />
     <!-- <Navigation v-if="mobile" /> -->
   </main>
 
   <teleport to="body">
-    <patternBG @click.prevent="clearActiveContent" />
+    <patternBG />
   </teleport>
 </template>
 
@@ -55,9 +55,9 @@ export default {
     toggle() {
       this.activeContent = "#intro";
     },
-    clearActiveContent() {
-      this.activeContent = null;
-    },
+    // clearActiveContent() {
+    //   this.activeContent = null;
+    // },
   },
 };
 </script>

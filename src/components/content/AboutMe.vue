@@ -76,7 +76,6 @@ import Skills from "./Skills.vue";
 
 export default {
   name: "AboutMe",
-  emits: ["about-trigger"],
   components: {
     Skills,
   },
@@ -112,13 +111,9 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useIndexStore, ["checkScreen", "toggleActiveNavStore"]),
+    ...mapActions(useIndexStore, ["checkScreen"]),
     toggleReadMore() {
       this.readMore = !this.readMore;
-    },
-
-    triggerAboutTrigger() {
-      this.$emit("about-trigger");
     },
 
     checkIfElementAtTop() {
@@ -143,8 +138,7 @@ export default {
           // trigger the animations
           if (aboutSectionHalfwayPoint <= aboutViewportHeight) {
             // console.log("Top section is halfway in the browser view.");
-            this.triggerAboutTrigger();
-
+            // this.triggerAboutTrigger();
             // console.log(this.navLists);
           } else if (aboutSectionHalfwayPoint > aboutViewportHeight) {
           }

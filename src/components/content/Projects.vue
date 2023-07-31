@@ -71,7 +71,6 @@ import githubIcon from "@/components/icons/social/github.vue";
 
 export default {
   name: "Projects",
-  emits: ["proj-trigger"],
   components: {
     htmlIcon,
     cssIcon,
@@ -188,9 +187,6 @@ export default {
       }
     },
 
-    triggerProjTrigger() {
-      this.$emit("proj-trigger");
-    },
     checkIfElementAtTop() {
       const element = this.$refs.elementToTrack;
       const sectionBottom = this.$refs.sectionElement.getBoundingClientRect().bottom;
@@ -205,13 +201,12 @@ export default {
           const projViewportHeight = window.innerHeight + 500;
           const projSectionHalfwayPoint = rect.top + rect.height / 2;
 
-          console.log(`section: ${projSectionHalfwayPoint}`);
-          console.log(`viewport: ${projViewportHeight}`);
+          // console.log(`section: ${projSectionHalfwayPoint}`);
+          // console.log(`viewport: ${projViewportHeight}`);
 
           // trigger the animations
           if (projSectionHalfwayPoint <= projViewportHeight) {
             // console.log("Top section is halfway in the browser view.");
-            this.triggerProjTrigger();
           } else if (projSectionHalfwayPoint > projViewportHeight) {
           }
 

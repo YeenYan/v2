@@ -26,7 +26,6 @@ import useIndexStore from "@/store/index";
 
 export default {
   name: "Intro",
-  emits: ["intro-trigger"],
   data() {
     return {
       readMore: false,
@@ -61,7 +60,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(useIndexStore, ["checkScreen", "toggleActiveNavStore"]),
+    ...mapActions(useIndexStore, ["checkScreen"]),
     openGmail() {
       const isAndroid = /android/i.test(navigator.userAgent);
       const email = "markiantalan@gmail.com"; // Replace with your actual Gmail address
@@ -71,10 +70,6 @@ export default {
       } else {
         window.location.href = `mailto:${email}`;
       }
-    },
-
-    triggerIntroTrigger() {
-      this.$emit("intro-trigger");
     },
 
     checkIfElementAtTop() {
@@ -99,8 +94,6 @@ export default {
           // trigger the animations
           if (aboutSectionHalfwayPoint <= aboutViewportHeight) {
             // console.log("Top section is halfway in the browser view.");
-            this.triggerIntroTrigger();
-
             // console.log(this.navLists);
           } else if (aboutSectionHalfwayPoint > aboutViewportHeight) {
           }

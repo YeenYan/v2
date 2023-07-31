@@ -67,7 +67,7 @@ export default {
       this.activeContent = true;
       this.navActive = content;
 
-      this.$emit("navTrigger");
+      // this.$emit("navTrigger");
     },
     toggleNav() {
       this.navActive = !this.navActive;

@@ -96,7 +96,6 @@ import useIndexStore from "@/store/index";
 import checkSign from "../icons/checkSign.vue";
 
 export default {
-  emits: ["contact-trigger", "nav-trigger"],
   components: {
     checkSign,
   },
@@ -145,10 +144,6 @@ export default {
       this.readMore = !this.readMore;
     },
 
-    triggerContactTrigger() {
-      this.$emit("contact-trigger");
-    },
-
     checkIfElementAtTop() {
       const element = this.$refs.elementToTrack;
       const sectionBottom = this.$refs.sectionElement.getBoundingClientRect().bottom;
@@ -168,8 +163,7 @@ export default {
 
           // trigger the animations
           if (contactSectionHalfwayPoint <= contactViewportHeight) {
-            // alert("Top section is halfway in the browser view.");
-            this.triggerContactTrigger();
+            // alert("Top section is halfway in the browser view.")
           } else {
           }
 

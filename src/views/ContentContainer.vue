@@ -116,23 +116,22 @@ export default {
       this.activeContent = true;
       this.navActive = content;
     },
-    handleIntroTrigger() {
-      // this.toggleActiveNav(this.navLists[0], this.navLists[0].content);
-      this.activeContent = false;
-      this.navActive = "";
-    },
-    handleAboutTrigger() {
-      this.toggleActiveNav(this.navLists[0], this.navLists[0].content);
-    },
-    handleExpTrigger() {
-      this.toggleActiveNav(this.navLists[1], this.navLists[1].content);
-    },
-    handleProjTrigger() {
-      this.toggleActiveNav(this.navLists[2], this.navLists[2].content);
-    },
-    handleContactTrigger() {
-      this.toggleActiveNav(this.navLists[3], this.navLists[3].content);
-    },
+    // handleIntroTrigger() {
+    //   this.activeContent = false;
+    //   this.navActive = "";
+    // },
+    // handleAboutTrigger() {
+    //   this.toggleActiveNav(this.navLists[0], this.navLists[0].content);
+    // },
+    // handleExpTrigger() {
+    //   this.toggleActiveNav(this.navLists[1], this.navLists[1].content);
+    // },
+    // handleProjTrigger() {
+    //   this.toggleActiveNav(this.navLists[2], this.navLists[2].content);
+    // },
+    // handleContactTrigger() {
+    //   this.toggleActiveNav(this.navLists[3], this.navLists[3].content);
+    // },
 
     handleScroll() {
       // console.log(`Element: ${element.getBoundingClientRect()}`);
