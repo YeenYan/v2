@@ -51,8 +51,16 @@ export default {
    elAnimation: false,
    experiences: [
     {
+     position: "Web Developer",
+     date: "December 2024 - Present",
+     company: "APEC Homes",
+     companyType: "Real Estate Company",
+     desc:
+      "Redesigned and rebuilt the Sellers App v4 for Android and iOS using Ionic Vue, TypeScript, and Capacitor, with a modern UI from Figma to improve UX and scalability. Added a new sellers leaderboard to boost user engagement. Also revamped the Sellers Web App v4 using Vue.js, Laravel, and MySQL, serving as both the web platform and API for the mobile app. Provided UI/UX design guidance to the dev team, improving interface consistency, usability, and overall system flow.",
+    },
+    {
      position: "Jr. Web Developer",
-     date: "September 2022 - Present",
+     date: "September 2022 - December 2024",
      company: "APEC Homes",
      companyType: "Real Estate Company",
      desc:
